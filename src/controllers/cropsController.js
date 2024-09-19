@@ -31,7 +31,7 @@ exports.getCrops = async (req, res) => {
     }
 }
 
-exports.getCrop = async(req, res) => {
+exports.getCrop = async (req, res) => {
     const authHeader = req.headers['authorization'] || req.headers['Authorization']
     const token = authHeader.split(' ')[1]
     const cropId = req.params.id
@@ -46,7 +46,7 @@ exports.getCrop = async(req, res) => {
     }
 }
 
-exports.updateCrop = async(req, res) => {
+exports.updateCrop = async (req, res) => {
     const authHeader = req.headers['authorization'] || req.headers['Authorization']
     const token = authHeader.split(' ')[1]
     const cropId = req.params.id
@@ -62,7 +62,7 @@ exports.updateCrop = async(req, res) => {
     }
 }
 
-exports.deleteCrop = async(req, res) => {
+exports.deleteCrop = async (req, res) => {
     const authHeader = req.headers['authorization'] || req.headers['Authorization']
     const token = authHeader.split(' ')[1]
     const cropId = req.params.id
