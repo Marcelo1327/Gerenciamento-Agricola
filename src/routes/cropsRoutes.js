@@ -3,6 +3,7 @@ const router = express.Router()
 const cropsController = require('../controllers/crops_controller')
 const expenseController = require('../controllers/expense_controller')
 const fertilizationController = require('../controllers/fertilizations_controller')
+const scheduleController = require('../controllers/schedule_controller')
 
 router.get('/', cropsController.getCrops)
 
@@ -34,5 +35,15 @@ router.put('/:cropId/fertilizations/:fertilizationId', fertilizationController.u
 
 router.delete('/:cropId/fertilizations/:fertilizationId', fertilizationController.deleteFertilization)
 
+
+//area schedule
+
+router.get('/:cropId/schedule', scheduleController.getActivity)
+
+router.post('/:cropId/schedule', scheduleController.createActicity)
+
+router.put('/:cropId/schedule/:activityId', scheduleController.updateActivity)
+
+router.delete('/:cropId/schedule/:activityId', scheduleController.deleteActivity)
 
 module.exports = router
