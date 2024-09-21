@@ -15,13 +15,13 @@ router.delete('/:id', cropsController.deleteCrop)
 
 //area expenses
 
-router.get('/expenses/:id', expenseController.listExpenses)
+router.get('/:id/expenses', expenseController.listExpenses)
 
-router.post('/expenses/:id', expenseController.createExpense)
+router.post('/:id/expenses', expenseController.createExpense)
 
-router.put('/expenses/:id', expenseController.updateExpense)
+router.put('/:id/expenses/:id', expenseController.updateExpense)
 
-router.delete('/expenses/:id', expenseController.deleteExpense)
+router.delete('/:id/expenses/:id', expenseController.deleteExpense)
 
 
 module.exports = router

@@ -5,6 +5,10 @@ exports.createExpense = async (req, res) => {
     const {typeOfExpense, date, value, description} = req.body
     const cropId = req.params.id
 
+    if(!typeOfExpense || !date || !value || !description) {
+        res.status(400).json({ err: 'Por favor, verifique os campos obrigatórios e tente novamente.'})
+    }
+
     try {
         const expense = await new Expense({
             cropId,
@@ -26,9 +30,10 @@ exports.listExpenses = async (req, res) => {
 
     try {
         const expenses = await Expense.find({ cropId })
-        res.status(200).json({ expenses})
+       
+        res.status(200).json({ expenses })
     } catch (err) {
-        res.status(500).json({ err: err.message})
+        res.status(404).json({ err: err.message})
     }
 }
 
@@ -38,7 +43,7 @@ exports.updateExpense = async (req, res) => {
 
     try {
         const expense = await Expense.findByIdAndUpdate(expenseId, expenseData)
-        const crop = await Crop.findOne({ cropId: expense.cropId})
+        
         res.status(200).json({ expense })
     } catch (err) {
         res.status(500).json({ err: err.message})
