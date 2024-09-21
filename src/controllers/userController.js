@@ -18,30 +18,6 @@ exports.getUser = async (req, res) => {
         res.status(403).json({ error: err.message })
     }
     
-    // console.log(authHeader)
-    // if (!authHeader) {
-    //     return res.status(401).json({ err: 'Acesso negado, cabeçalho de autorização não fornecido' });
-    // }
-    // const token = JSON.stringify(authHeader).split(' ')[1]
-    
-    // if(!token){
-    //     console.log(token)
-    //     return res.status(401).json({ err : 'Acesso negado' })
-    // }
-
-    // jwt.verify(token, SECRET_KEY, async(err, user) => {
-    //     if(err){
-    //         return res.status(403).json({ err: 'Token inválido ou expirado'})
-    //     }
-
-       
-    //     try {
-    //         let user = await User.find(user.userId)
-    //         res.status(200).json({user})
-    //     } catch (err) {
-    //         res.status(404).json({ err: 'User not found!'})
-    //     }
-    // })
 }
    
 exports.postUser = async (req, res) => {
