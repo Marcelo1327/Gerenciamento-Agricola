@@ -1,7 +1,7 @@
 const express = require('express');
 const Task = require('../models/user'); 
 const router = express.Router();
-const userControllers = require('../controllers/userController')
+const userControllers = require('../controllers/user_controller')
 const authenticToken = require('../../config/js/anthentic');
 const user = require('../models/user');
 

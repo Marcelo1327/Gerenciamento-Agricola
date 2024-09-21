@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const cropsController = require('../controllers/cropsController')
-const expenseController = require('../controllers/expenseController')
+const cropsController = require('../controllers/crops_controller')
+const expenseController = require('../controllers/expense_controller')
+const fertilizationController = require('../controllers/fertilizations_controller')
 
 router.get('/', cropsController.getCrops)
 
@@ -15,13 +16,23 @@ router.delete('/:id', cropsController.deleteCrop)
 
 //area expenses
 
-router.get('/:id/expenses', expenseController.listExpenses)
+router.get('/:cropId/expenses', expenseController.listExpenses)
 
-router.post('/:id/expenses', expenseController.createExpense)
+router.post('/:cropId/expenses', expenseController.createExpense)
 
-router.put('/:id/expenses/:id', expenseController.updateExpense)
+router.put('/:cropId/expenses/:fertilizationId', expenseController.updateExpense)
 
-router.delete('/:id/expenses/:id', expenseController.deleteExpense)
+router.delete('/:cropId/expenses/:fertilizationId', expenseController.deleteExpense)
+
+//area fertilizer
+
+router.get('/:cropId/fertilizations', fertilizationController.getFertlization)
+
+router.post('/:cropId/fertilizations', fertilizationController.createFertilization)
+
+router.put('/:cropId/fertilizations/:fertilizationId', fertilizationController.updateFertilization)
+
+router.delete('/:cropId/fertilizations/:fertilizationId', fertilizationController.deleteFertilization)
 
 
 module.exports = router

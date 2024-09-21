@@ -10,7 +10,7 @@ exports.createExpense = async (req, res) => {
     const cropId = req.params.id
     
     if(!typeOfExpense || !date || !value || !description) {
-        res.status(400).json({ err: 'Por favor, verifique os campos obrigatórios e tente novamente.'})
+       return res.status(400).json({ err: 'Por favor, verifique os campos obrigatórios e tente novamente.'})
     }
     
     try {
