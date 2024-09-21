@@ -1,15 +1,20 @@
 const Expense = require('../models/expenses')
-const Crop = require('../models/crops')
+const {validateToken} = require('../services/tokenServices')
 
 exports.createExpense = async (req, res) => {
+    const authHeader = req.headers['authorization'] || req.headers['Authorization']
+    const token = authHeader.split(' ')[1]
+  
+
     const {typeOfExpense, date, value, description} = req.body
     const cropId = req.params.id
-
+    
     if(!typeOfExpense || !date || !value || !description) {
         res.status(400).json({ err: 'Por favor, verifique os campos obrigatórios e tente novamente.'})
     }
-
+    
     try {
+        await validateToken(token)
         const expense = await new Expense({
             cropId,
             typeOfExpense,
@@ -26,9 +31,14 @@ exports.createExpense = async (req, res) => {
 }
 
 exports.listExpenses = async (req, res) => {
-    const cropId = req.params.id
+    const authHeader = req.headers['authorization'] || req.headers['Authorization']
+    const token = authHeader.split(' ')[1]
+  
 
+    const cropId = req.params.id
+    
     try {
+        await validateToken(token)
         const expenses = await Expense.find({ cropId })
        
         res.status(200).json({ expenses })
@@ -38,10 +48,15 @@ exports.listExpenses = async (req, res) => {
 }
 
 exports.updateExpense = async (req, res) => {
+    const authHeader = req.headers['authorization'] || req.headers['Authorization']
+    const token = authHeader.split(' ')[1]
+  
+
     const expenseId = req.params.id
     const expenseData = req.body
-
+    
     try {
+        await validateToken(token)
         const expense = await Expense.findByIdAndUpdate(expenseId, expenseData)
         
         res.status(200).json({ expense })
@@ -51,9 +66,14 @@ exports.updateExpense = async (req, res) => {
 }
 
 exports.deleteExpense = async (req, res) => {
-    const expenseId = req.params.id
+    const authHeader = req.headers['authorization'] || req.headers['Authorization']
+    const token = authHeader.split(' ')[1]
+  
 
+    const expenseId = req.params.id
+    
     try {
+        await validateToken(token)
         const expense = await Expense.findByIdAndDelete(expenseId)
         res.status(200).json({ expense })
     } catch (err) {
